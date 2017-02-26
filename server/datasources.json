@@ -1,0 +1,35 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory",
+    "debug": true
+  },
+  "GrabOpFrontDesk": {
+    "host": "front-desk.ca",
+    "port": 3306,
+    "database": "frontdes_GrabOp",
+    "password": "graboppassword",
+    "name": "GrabOpFrontDesk",
+    "user": "frontdes_grabop",
+    "connector": "mysql"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "secure140.servconfig.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "support@iottech.ca",
+          "pass": "Zaq12wsx"
+        }
+      }
+    ]
+  }
+}

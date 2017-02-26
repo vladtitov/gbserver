@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>loopback-getting-started-intermediate</title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Coffee shop reviews</h1>
+      <h2 ng-show="currentUser">Hello {{currentUser.email}}</h2>
+      <nav>
+        <ul>
+          <li>
+            <a ui-sref="all-reviews" ui-sref-active="active">All reviews</a>
+          </li>
+          <li ng-hide="currentUser">
+            <a ui-sref="sign-up" ui-sref-active="active">Sign up</a>
+          </li>
+          <li ng-show="currentUser">
+            <a ui-sref="my-reviews" ui-sref-active="active">My Reviews</a>
+          </li>
+          <li ng-show="currentUser">
+            <a ui-sref="add-review" ui-sref-active="active">Add Review</a>
+          </li>
+          <li ng-hide="currentUser">
+            <a ui-sref="login" ui-sref-active="active">Log in</a>
+          </li>
+          <li ng-show="currentUser">
+            <a ui-sref="logout" ui-sref-active="active">Log out</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main ui-view></main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+      $(document).ready(function () {
+
+       /*   var url = 'http://localhost:3010/api/Reviews/log/2?access_token=8nvBJSkAHT38Lz0ECjV1cEBMdE9FwKsPxe8htUt0UMJ5kQ0uZ4auF46H6rm94XXS';
+          var url = 'http://localhost:3010/api/Reviews/log/2';
+          $.get(url).done(function (result) {
+              console.log(result);
+
+          })*/
+
+
+
+
+       var autorizate = function () {
+
+           var url = 'http://localhost:3010/api/Reviews?filter=%7B%22include%22:%5B%22coffeeShop%22,%22reviewer%22%5D%7D'
+//var url = 'api/Reviews/log/2';
+
+           $.ajax({
+               headers:{'Authorization':'8nvBJSkAHT38Lz0ECjV1cEBMdE9FwKsPxe8htUt0UMJ5kQ0uZ4auF46H6rm94XXS'},
+               dataType: "json",
+               url:url
+           }).done(function (res) {
+               console.log(res);
+           });
+       }
+
+
+          var doLogin = function (callabck) {
+
+
+              $.post('api/Reviewers/login?include=user',{email:"foo@bar.com",password:"foobar"})
+                .done(function (res) {
+                    console.log(res.id);
+                  /*  $.ajaxSetup({
+                        headers : {
+                            'Authorization':res.id
+                        }
+                    });*/
+                  console.log(res);
+                  callabck(res)
+              }).catch(function (err) {
+                  cconsole.error(err);
+              });
+
+          }
+
+          doLogin(function(err){
+           console.error(err);
+          })
+return;
+          doLogin(function (result) {
+
+
+              var token = result.id;
+
+              console.log(token);
+
+              $.ajax({
+                  headers:{'Authorization':token},
+                  dataType: "json",
+                  url:'/api/CoffeeShops'
+              }).done(function (res) {
+                  console.log(res);
+              });
+
+
+             /* $.get('http://localhost:3003/api/CoffeeShops').done(function (res) {
+                  console.log(res);
+              }).fail(function (err) {
+                  console.error(err);
+              })*/
+          });
+
+
+      })
+  </script>
+  </body>
+</html>
