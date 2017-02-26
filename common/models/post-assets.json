@@ -1,19 +1,22 @@
 {
-  "name": "Post",
+  "name": "PostAssets",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "forceId": false,
   "properties": {
-    "userid": {
-      "type": "number",
-      "required": true
+    "postid": {
+      "type": "number"
     },
-    "description": {
-      "type": "string",
-      "required": true
+    "photos": {
+      "type": "string"
+    },
+    "videos": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "string"
     }
   },
   "validations": [],

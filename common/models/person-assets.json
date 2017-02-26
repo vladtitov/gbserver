@@ -1,0 +1,26 @@
+{
+  "name": "PersonAssets",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "personid": {
+      "type": "number"
+    },
+    "photo": {
+      "type": "string"
+    },
+    "video": {
+      "type": "string"
+    },
+    "background": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

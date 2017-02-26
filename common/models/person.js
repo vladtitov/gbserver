@@ -3,21 +3,21 @@
 var config = require('../../server/config.json');
 var path = require('path');
 
-module.exports = function(Reviewer) {
-    Reviewer.observe('access', function(ctx, next){
+module.exports = function(Person) {
+    Person.observe('access', function(ctx, next){
 
         console.log('Reviewer.observe  access', ctx.options);
         next();
     })
 
-    Reviewer.afterRemote('login', function (ctx, user, next) {
+    Person.afterRemote('login', function (ctx, user, next) {
 
         console.log('after login user ', user);
         next();
     });
 
 
-    Reviewer.afterRemote('create', function(context, user, next) {
+    Person.afterRemote('create', function(context, user, next) {
         console.log('> user.afterRemote triggered');
 
         var options = {

@@ -1,49 +1,40 @@
 {
-  "name": "Post",
+  "name": "Opportunity",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "forceId": false,
   "properties": {
-    "userid": {
+    "postid": {
       "type": "number",
       "required": true
     },
-    "isoffer": {
-      "type": "number",
-      "required": true
-    },
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "country": {
+    "postsAssociated": {
       "type": "string"
     },
-    "province": {
+    "businessStyle": {
       "type": "string"
     },
-    "city": {
-      "type": "string"
+    "businessStyleChanged": {
+      "type": "number"
     },
-    "ctegories": {
-      "type": "string"
-    },
-    "keywords": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "businessstyle": {
-      "type": "string"
+    "businessStyleMatch": {
+      "type": "number"
     },
     "monetary": {
       "type": "string"
     },
-    "created": {
+    "statusids": {
+      "type": "string"
+    },
+    "signedIds": {
+      "type": "string"
+    },
+    "signedDone": {
+      "type": "date"
+    },
+    "eneded": {
       "type": "date"
     }
   },

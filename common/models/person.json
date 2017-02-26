@@ -1,0 +1,38 @@
+{
+  "name": "Person",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "jobtitle": {
+      "type": "string"
+    },
+    "business": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

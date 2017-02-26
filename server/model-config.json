@@ -49,7 +49,38 @@
     "dataSource": "emailDs"
   },
   "Post": {
-    "dataSource": "db",
-    "public": true
+    "dataSource": "GrabOpFrontDesk",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "PostAssets": {
+    "dataSource": "GrabOpFrontDesk",
+    "$promise": {},
+    "$resolved": true
+  },
+  "Apuser": {
+    "dataSource": "GrabOpFrontDesk",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Person": {
+    "dataSource": "GrabOpFrontDesk",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "PersonAssets": {
+    "dataSource": "GrabOpFrontDesk",
+    "public": false,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Opportunity": {
+    "dataSource": "GrabOpFrontDesk",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }
