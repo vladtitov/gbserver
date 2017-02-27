@@ -1,4 +1,4 @@
-///<reference path="./../typings/index.d.ts"/>
+///<reference path="./../../typings/index.d.ts"/>
 
 module test{
   export class TestPosts{
@@ -16,7 +16,7 @@ module test{
 
     savePost():void{
       let url = 'http://localhost:3011/api/Posts';
-      let post:any = {description:'my saved post 4'};
+      let post:any = {isoffer:true,title:"post 2 ",description:'my saved post 2'};
       this.request.save(post,url).done((res)=>console.log(res)).fail(err=>console.error(err));
     }
 
@@ -24,7 +24,7 @@ module test{
 
   export class Login{
    // loginUrl:string = 'http://grabopapi2dev.us-west-2.elasticbeanstalk.com/api/v1/auth';
-    loginUrl2:string ='http://localhost:3011/api/Reviewers/login';
+    loginUrl2:string ='http://localhost:3011/api/Apusers/login';
     token:string;
     credetials: {
       created:string;

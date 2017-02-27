@@ -1,4 +1,4 @@
-///<reference path="./../typings/index.d.ts"/>
+///<reference path="./../../typings/index.d.ts"/>
 var test;
 (function (test) {
     var TestPosts = (function () {
@@ -14,7 +14,7 @@ var test;
         };
         TestPosts.prototype.savePost = function () {
             var url = 'http://localhost:3011/api/Posts';
-            var post = { description: 'my saved post 4' };
+            var post = { isoffer: true, title: "post 2 ", description: 'my saved post 2' };
             this.request.save(post, url).done(function (res) { return console.log(res); }).fail(function (err) { return console.error(err); });
         };
         return TestPosts;
@@ -23,7 +23,7 @@ var test;
     var Login = (function () {
         function Login() {
             // loginUrl:string = 'http://grabopapi2dev.us-west-2.elasticbeanstalk.com/api/v1/auth';
-            this.loginUrl2 = 'http://localhost:3011/api/Reviewers/login';
+            this.loginUrl2 = 'http://localhost:3011/api/Apusers/login';
             this.user = {
                 email: 'uplight.ca@gmail.com',
                 password: 'zaq12wsx'
