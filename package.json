@@ -1,5 +1,5 @@
 {
-  "name": "grabop server",
+  "name": "grabopserver",
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "loopback-connector-mongodb": "^1.17.0",
     "loopback-connector-mysql": "^2.4.0",
     "loopback-connector-sqlite3": "^1.2.0",
+    "loopback-storage-service": "^1.0.4",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^1.0.1"
   },
