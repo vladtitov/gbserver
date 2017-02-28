@@ -48,6 +48,10 @@
   "Email": {
     "dataSource": "emailDs"
   },
+  "container": {
+    "dataSource": "storage",
+    "public": true
+  },
   "Post": {
     "dataSource": "GrabOpFrontDesk",
     "public": true,
