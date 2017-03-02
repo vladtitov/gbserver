@@ -6,69 +6,104 @@ angular.module('app', ['angularFileUpload'])
 
     // create a uploader with options
 
-    var uploader = $scope.uploader = new FileUploader({
-      scope: $scope,                          // to automatically update the html. Default: $rootScope
-      url: '/api/containers/container1/upload',
-      formData: [
-        { key: 'value' }
-      ]
-    });
+      var doLogin = function (callabck) {
 
-    // ADDING FILTERS
-    uploader.filters.push({
-        name: 'filterName',
-        fn: function (item, options) { // second user filter
-            console.info('filter2');
-            return true;
-        }
-    });
 
-    // REGISTER HANDLERS
-    // --------------------
-    uploader.onAfterAddingFile = function(item) {
-      console.info('After adding a file', item);
-    };
-    // --------------------
-    uploader.onAfterAddingAll = function(items) {
-      console.info('After adding all files', items);
-    };
-    // --------------------
-    uploader.onWhenAddingFileFailed = function(item, filter, options) {
-      console.info('When adding a file failed', item);
-    };
-    // --------------------
-    uploader.onBeforeUploadItem = function(item) {
-      console.info('Before upload', item);
-    };
-    // --------------------
-    uploader.onProgressItem = function(item, progress) {
-      console.info('Progress: ' + progress, item);
-    };
-    // --------------------
-    uploader.onProgressAll = function(progress) {
-      console.info('Total progress: ' + progress);
-    };
-    // --------------------
-    uploader.onSuccessItem = function(item, response, status, headers) {
-      console.info('Success', response, status, headers);
-      $scope.$broadcast('uploadCompleted', item);
-    };
-    // --------------------
-    uploader.onErrorItem = function(item, response, status, headers) {
-      console.info('Error', response, status, headers);
-    };
-    // --------------------
-    uploader.onCancelItem = function(item, response, status, headers) {
-      console.info('Cancel', response, status);
-    };
-    // --------------------
-    uploader.onCompleteItem = function(item, response, status, headers) {
-      console.info('Complete', response, status, headers);
-    };
-    // --------------------
-    uploader.onCompleteAll = function() {
-      console.info('Complete all');
-    };
+          $.post('api/Apusers/login',{email:"uplight.ca@gmail.com",password:"zaq12wsx"})
+              .done(function (res) {
+                  console.log(res.id);
+                  /*  $.ajaxSetup({
+                   headers : {
+                   'Authorization':res.id
+                   }
+                   });*/
+                  console.log(res);
+                  callabck(res)
+              }).catch(function (err) {
+              console.error(err);
+          });
+
+      }
+
+      doLogin(function(res){
+          console.error(res);
+          console.log(uploader);
+          uploader.headers['Authorization'] = res.id;
+         // initUploader();
+      })
+
+    //  var initUploader = function ($scope) {
+
+          var uploader = $scope.uploader = new FileUploader({
+              scope: $scope,                          // to automatically update the html. Default: $rootScope
+              //url: '/api/containers/container5/upload',
+              url: '/api/People/container6/upload',
+              formData: [
+                  { key: 'value' }
+              ]
+          });
+
+          // ADDING FILTERS
+          uploader.filters.push({
+              name: 'filterName',
+              fn: function (item, options) { // second user filter
+                  console.info('filter2');
+                  return true;
+              }
+          });
+
+          // REGISTER HANDLERS
+          // --------------------
+          uploader.onAfterAddingFile = function(item) {
+              console.info('After adding a file', item);
+          };
+          // --------------------
+          uploader.onAfterAddingAll = function(items) {
+              console.info('After adding all files', items);
+          };
+          // --------------------
+          uploader.onWhenAddingFileFailed = function(item, filter, options) {
+              console.info('When adding a file failed', item);
+          };
+          // --------------------
+          uploader.onBeforeUploadItem = function(item) {
+              console.info('Before upload', item);
+          };
+          // --------------------
+          uploader.onProgressItem = function(item, progress) {
+              console.info('Progress: ' + progress, item);
+          };
+          // --------------------
+          uploader.onProgressAll = function(progress) {
+              console.info('Total progress: ' + progress);
+          };
+          // --------------------
+          uploader.onSuccessItem = function(item, response, status, headers) {
+              console.info('Success', response, status, headers);
+              $scope.$broadcast('uploadCompleted', item);
+          };
+          // --------------------
+          uploader.onErrorItem = function(item, response, status, headers) {
+              console.info('Error', response, status, headers);
+          };
+          // --------------------
+          uploader.onCancelItem = function(item, response, status, headers) {
+              console.info('Cancel', response, status);
+          };
+          // --------------------
+          uploader.onCompleteItem = function(item, response, status, headers) {
+              console.info('Complete', response, status, headers);
+          };
+          // --------------------
+          uploader.onCompleteAll = function() {
+              console.info('Complete all');
+          };
+     // }
+
+
+
+
+
     // --------------------
   }
 ).controller('FilesController', function ($scope, $http) {

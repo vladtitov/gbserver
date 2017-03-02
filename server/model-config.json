@@ -48,7 +48,7 @@
   "Email": {
     "dataSource": "emailDs"
   },
-  "container": {
+  "Container": {
     "dataSource": "storage",
     "public": true
   },

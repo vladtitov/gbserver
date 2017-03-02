@@ -4,6 +4,47 @@ var config = require('../../server/config.json');
 var path = require('path');
 
 module.exports = function(Person) {
+
+    Person.upload = function(options, req, res, upload_id, cb) {
+
+        var token = options.accessToken;
+        console.log(token);
+        var folder = 'folder-'+ token.userId;
+
+        var onUploaded = function (err,result) {
+            console.log(JSON.stringify(result));
+            cb(null,result)
+        };
+
+        var StorageContainer = Person.app.models.Container;
+
+        StorageContainer.getContainers(function (err, containers) {
+            if (containers.some(function(e) { return e.name == folder; })) {
+                StorageContainer.upload(req, res, {container: folder}, onUploaded);
+
+            }
+            else {
+                StorageContainer.createContainer({name: folder}, function(err, c) {
+                    StorageContainer.upload(req, res, {container: c.name}, onUploaded);
+                });
+            }
+        });
+    };
+
+    Person.remoteMethod('upload',
+        {
+            http: {path: '/:id/upload', verb: 'post'},
+            accepts: [
+                {arg: "options", type: "object", http: "optionsFromRequest"},
+                {arg: 'req', type: 'object', 'http': {source: 'req'}},
+                {arg: 'res', type: 'object', 'http': {source: 'res'}},
+                {arg: 'id', type: 'string'}
+            ],
+            returns: {arg: 'status', type: 'object'}
+        }
+    );
+
+
     Person.observe('access', function(ctx, next){
 
         console.log('Reviewer.observe  access', ctx.options);
